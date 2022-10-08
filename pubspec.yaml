@@ -1,0 +1,13 @@
+name: legion
+description: Dead-Simple Cross Compilation
+version: 0.1.0
+dependencies:
+  ansicolor: "^2.0.1"
+  path: "^1.8.2"
+  system_info2: "^2.0.4"
+  args: "^2.3.1"
+  simple_mustache: "^2.1.0"
+executables:
+  legion:
+environment:
+  sdk: '>=2.10.0 <3.0.0'

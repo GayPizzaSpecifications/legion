@@ -1,0 +1,11 @@
+{
+  "cmake": {
+    "verbose": true
+  },
+  "assembly": [
+    {
+      "copy-executable": "{target.directory}/hello",
+      "to": "{project.directory}/dists/{target.name}-hello"
+    }
+  ]
+}

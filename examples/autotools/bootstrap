@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
+aclocal
+autoreconf -f -i
+automake --add-missing

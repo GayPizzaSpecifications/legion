@@ -1,13 +1,13 @@
 # Legion
 
-Legion is a tool that makes it simple to cross-compile CMake projects.
+Legion is a tool that makes it simple to cross-compile C/C++ projects.
 
 ## Installation
 
-Ensure you have the [Dart SDK](https://www.dartlang.org/downloads/) installed.
+Ensure you have the [Dart SDK](https://dart.dev/get-dart) installed.
 
 ```bash
-pub global activate -sgit https://github.com/IOT-DSA/legion.git
+pub global activate -sgit https://github.com/mysticlgbt/legion.git
 ```
 
 ## Usage

@@ -46,7 +46,8 @@ class BuildCycle {
         continue;
       }
 
-      yield await project.getTarget(name, toolchain, extraArguments);
+      final id = TargetIdentifier(name, await toolchain.getTargetMachine());
+      yield await project.getTarget(id, toolchain, extraArguments);
     }
   }
 
@@ -65,15 +66,15 @@ class BuildCycle {
 
   Future _configure() async {
     for (var builder in await getBuilders().toList()) {
-      reportStatusMessage("Generating target ${builder.target.name}");
+      reportStatusMessage("Generating target ${builder.target.id.name}");
       try {
         await builder.generate();
 
-        if (!project.state.isInList("targets", builder.target.name)) {
-          project.state.addToList("targets", builder.target.name);
+        if (!project.state.isInList("targets", builder.target.id.name)) {
+          project.state.addToList("targets", builder.target.id.name);
         }
 
-        reportStatusMessage("Generated target ${builder.target.name}");
+        reportStatusMessage("Generated target ${builder.target.id.name}");
       } catch (e, stack) {
         var msg = e.toString();
 
@@ -83,8 +84,8 @@ class BuildCycle {
 
         reportErrorMessage(msg);
 
-        if (project.state.isInList("targets", builder.target.name)) {
-          project.state.removeFromList("targets", builder.target.name);
+        if (project.state.isInList("targets", builder.target.id.name)) {
+          project.state.removeFromList("targets", builder.target.id.name);
         }
       }
     }
@@ -92,10 +93,10 @@ class BuildCycle {
 
   Future _build() async {
     for (var builder in await getBuilders().toList()) {
-      reportStatusMessage("Building target ${builder.target.name}");
+      reportStatusMessage("Building target ${builder.target.id.name}");
       try {
         await builder.build();
-        reportStatusMessage("Built target ${builder.target.name}");
+        reportStatusMessage("Built target ${builder.target.id.name}");
       } catch (e, stack) {
         var msg = e.toString();
 
@@ -112,11 +113,11 @@ class BuildCycle {
     var steps = await getAssemblySteps();
 
     for (var target in await getTargets().toList()) {
-      reportStatusMessage("Assembling target ${target.name}");
+      reportStatusMessage("Assembling target ${target.id.name}");
       for (var step in steps) {
         await step.perform(target);
       }
-      reportStatusMessage("Assembled target ${target.name}");
+      reportStatusMessage("Assembled target ${target.id.name}");
     }
   }
 

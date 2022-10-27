@@ -9,6 +9,8 @@ import "dart:io";
 import "package:legion/tool.dart";
 
 main(List<String> args) async {
+  await setupLegionTool();
+
   if (args.isEmpty) {
     print("Usage: legion <command> [args]");
     print("Commands:");

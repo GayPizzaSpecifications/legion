@@ -21,7 +21,8 @@ class CopyExecutableAssemblyStep extends AssemblyStep {
 
     var variables = <String, String>{
       "project.directory": target.project.directory.path,
-      "target.name": target.name,
+      "target.name": target.id.name,
+      "target.actual": target.id.actual,
       "target.directory": target.buildDirectory.path
     };
 

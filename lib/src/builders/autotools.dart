@@ -43,7 +43,7 @@ class AutotoolsBuilder extends Builder {
       );
 
       if (result.exitCode != 0) {
-        throw new LegionError("Bootstrap failed for target ${target.name}");
+        throw new LegionError("Bootstrap failed for target ${target.id.name}");
       }
     }
 
@@ -77,7 +77,7 @@ class AutotoolsBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      throw new LegionError("Configure failed for target ${target.name}");
+      throw new LegionError("Configure failed for target ${target.id.name}");
     }
   }
 
@@ -95,7 +95,7 @@ class AutotoolsBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      throw new LegionError("Make failed for target ${target.name}");
+      throw new LegionError("Make failed for target ${target.id.name}");
     }
   }
 }

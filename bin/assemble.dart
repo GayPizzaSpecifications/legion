@@ -3,6 +3,8 @@ import "dart:io";
 import "package:legion/tool.dart";
 
 main(List<String> args) async {
+  await setupLegionTool();
+
   var targets = args.takeWhile((arg) => arg != "--").toList();
   var extraArguments = args.skip(targets.length).toList();
 

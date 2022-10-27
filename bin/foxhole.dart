@@ -4,6 +4,8 @@ import "dart:io";
 import "package:legion/tool.dart";
 
 main(List<String> args) async {
+  await setupLegionTool();
+
   // Protect print statements from clobbering for evaluation
   return await Zone.current.fork(specification: new ZoneSpecification(
     print: (Zone self, ZoneDelegate parent, Zone zone, String line) {

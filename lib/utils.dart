@@ -28,7 +28,7 @@ bool isArchX86_32Bit(String arch) =>
   [arch, _architectures[arch]].any((x) => const ["x86", "x32"].contains(x));
 
 bool isTargetX86_32Bit(String target) =>
-    isArchX86_32Bit(target.split("-").last);
+  isArchX86_32Bit(target.split("-").last);
 
 class Icon {
   static const String NAV_ARROW = "\u27A4";

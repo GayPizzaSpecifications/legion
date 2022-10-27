@@ -16,6 +16,8 @@ class ToolchainSummary {
 }
 
 main(List<String> args) async {
+  await setupLegionTool();
+
   var argp = new ArgParser();
   argp.addOption("format", abbr: "f", allowed: const <String>[
     "human",

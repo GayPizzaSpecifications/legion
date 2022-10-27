@@ -1,16 +1,23 @@
 part of legion.api;
 
+class TargetIdentifier {
+  final String name;
+  final String actual;
+
+  TargetIdentifier(this.name, this.actual);
+}
+
 class Target {
   final Project project;
-  final String name;
+  final TargetIdentifier id;
   final Toolchain toolchain;
   final List<String> extraArguments;
 
-  Target(this.project, this.name, this.toolchain, this.extraArguments);
+  Target(this.project, this.id, this.toolchain, this.extraArguments);
 
   Future<bool> getBooleanSetting(String name) async {
     return await project.getBooleanSetting(name) || await project.getBooleanSetting(
-      "targets.${this.name}.${name}"
+      "targets.${id.name}.${name}"
     );
   }
 
@@ -18,7 +25,7 @@ class Target {
     if (_buildDirectory == null) {
       _buildDirectory = new Directory(
         resolveWorkingPath(
-          "legion/${name}",
+          "legion/${id.name}",
           from: project.directory
         )
       );

@@ -72,7 +72,7 @@ class ScriptBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      throw new LegionError("Configure failed for target ${target.name}");
+      throw new LegionError("Configure failed for target ${target.id.name}");
     }
   }
 
@@ -113,7 +113,7 @@ class ScriptBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      throw new LegionError("Build failed for target ${target.name}");
+      throw new LegionError("Build failed for target ${target.id.name}");
     }
   }
 }

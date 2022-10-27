@@ -15,15 +15,15 @@ import "gcc.dart" as Gcc;
 const String _gitUrl = "https://github.com/crosstool-ng/crosstool-ng.git";
 
 const Map<String, String> crosstoolTargetMap = const {
-  "linux-x86": "i686-none-linux-gnu",
+  "linux-x86": "i686-ubuntu16.04-linux-gnu",
   "linux-x64": "x86_64-unknown-linux-gnu",
   "linux-x64-musl": "x86_64-multilib-linux-musl",
   "linux-arm": "arm-unknown-eabi",
-  "linux-arm-rpi1": "armv6-rpi-linux-gnueabi",
+  "linux-arm-rpi1": "armv6-unknown-linux-gnueabi",
   "linux-arm-rpi2": "armv7-rpi2-linux-gnueabihf",
   "linux-arm-rpi3": "armv8-rpi3-linux-gnueabihf",
+  "linux-arm-rpi4": "armv8-rpi4-linux-gnueabihf",
   "linux-arm-uclibc": "arm-unknown-linux-uclibcgnueabi",
-  "linux-aarch64-rpi3": "aarch64-rpi3-linux-gnueabi",
   "linux-mipsel": "mipsel-unknown-linux-gnu",
   "linux-powerpc": "powerpc-unknown-linux-gnu",
   "linux-powerpc-860": "powerpc-860-linux-gnu",
@@ -125,6 +125,11 @@ class CrossTool {
       _workingDir = getLegionHomeSubDir("crosstool-work").absolute;
       if (!_workingDir.existsSync()) {
         _workingDir.createSync(recursive: true);
+      }
+
+      var workingDirSrc = Directory(pathlib.join(_workingDir.path, "src"));
+      if (!workingDirSrc.existsSync()) {
+        workingDirSrc.createSync(recursive: true);
       }
     }
 
@@ -285,7 +290,7 @@ class CrossToolToolchainProvider extends ToolchainProvider {
     }
 
     var samples = await crosstool.listSamples();
-
+    print(samples.join("\n"));
     return samples.contains(target);
   }
 

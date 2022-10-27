@@ -1,0 +1,8 @@
+{
+  "assembly": [
+    {
+      "copy-executable": "{target.directory}/src/hello",
+      "to": "{project.directory}/dists/{target.name}-hello"
+    }
+  ]
+}

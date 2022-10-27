@@ -21,8 +21,10 @@ class GccToolchain extends GenericToolchain {
       super(target, compiler, "gcc", "g++");
 
   @override
-  Future<GenericCompilerTool> getCompilerWrapper(String path) async =>
-    new GccTool(path);
+  Future<GenericCompilerTool> getCompilerWrapper(String path) async {
+    print(path);
+    return new GccTool(path);
+  }
 }
 
 class GccToolchainProvider extends ToolchainProvider {

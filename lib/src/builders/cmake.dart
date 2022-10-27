@@ -61,7 +61,7 @@ class CMakeTargetGenerator {
 
   Future configureCMakeTarget() async {
     var file = target.project.getFile(
-      "legion/.toolchains/${target.name}.cmake"
+      "legion/.toolchains/${target.id.name}.cmake"
     );
 
     var out = new StringBuffer();
@@ -154,7 +154,7 @@ class CMakeBuilder extends Builder {
 
     generator.addToolchainDefs(generateNormalCMakeToolchain(
       system,
-      target.name,
+      target.id.name,
       cc,
       cxx,
       targetMachine
@@ -206,7 +206,7 @@ class CMakeBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      var msg = "CMake failed for target ${target.name}";
+      var msg = "CMake failed for target ${target.id.name}";
 
       if (!inherit) {
         msg += "\n${result.output}";
@@ -234,7 +234,7 @@ class CMakeBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      throw new LegionError("Build failed for target ${target.name}");
+      throw new LegionError("Build failed for target ${target.id.name}");
     }
   }
 }

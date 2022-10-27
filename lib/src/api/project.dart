@@ -27,10 +27,10 @@ class Project implements Configuration {
   }
 
   Future<Target> getTarget(
-    String name,
+    TargetIdentifier id,
     Toolchain toolchain,
     List<String> extraArguments) async {
-    return new Target(this, name, toolchain, extraArguments);
+    return new Target(this, id, toolchain, extraArguments);
   }
 
   @override

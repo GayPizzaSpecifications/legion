@@ -64,7 +64,7 @@ class BoostBuilder extends Builder {
         );
 
         if (result.exitCode != 0) {
-          throw new LegionError("Bootstrap failed for target ${target.name}");
+          throw new LegionError("Bootstrap failed for target ${target.id.name}");
         }
       }
     }
@@ -98,7 +98,7 @@ class BoostBuilder extends Builder {
 
     if (exe == null || !(await exe.exists())) {
       throw new LegionError(
-        "b2 command could not be found for target ${target.name}"
+        "b2 command could not be found for target ${target.id.name}"
       );
     }
 
@@ -111,7 +111,7 @@ class BoostBuilder extends Builder {
     );
 
     if (result.exitCode != 0) {
-      throw new LegionError("b2 failed for target ${target.name}");
+      throw new LegionError("b2 failed for target ${target.id.name}");
     }
   }
 

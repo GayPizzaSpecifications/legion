@@ -29,3 +29,5 @@ Makefile.in
 # http://www.gnu.org/software/texinfo
 /texinfo.tex
 legion/
+dists/
+*~
